@@ -42,6 +42,11 @@ const profiles = [
   },
 ];
 
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
+
+
 app.get("/profile/:userId", (req, res) => {
   const userId = parseInt(req.params.userId);
   const profile = profiles.find((p) => p.userId === userId);
