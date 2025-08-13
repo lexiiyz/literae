@@ -4,7 +4,9 @@ const cors = require("cors");
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5713', 'https://literae-ngdw.vercel.app/']
+}));
 app.use(express.json());
 
 // Dummy users
