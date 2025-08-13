@@ -26,7 +26,7 @@ export default function ProfilePage() {
       return;
     }
     setLoading(true);
-    fetch(`http://localhost:5000/profile/${user.id}`)
+    fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/profile/${user.id}`)
       .then((res) => res.json())
       .then((data: Profile) => {
         setProfile(data);

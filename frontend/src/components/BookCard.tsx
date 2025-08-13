@@ -36,7 +36,7 @@ export default function BookCard({
       navigate("/login");
       return;
     }
-    await fetch("http://localhost:5000/bookmarks", {
+    await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/bookmarks`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -59,7 +59,7 @@ export default function BookCard({
       navigate("/login");
       return;
     }
-    await fetch("http://localhost:5000/cart", {
+    await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/cart`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -46,7 +46,7 @@ export default function Product() {
     const startIndex = (pageNumber - 1) * maxResults;
 
     fetch(
-      `http://localhost:5000/books?q=${encodeURIComponent(query)}&genre=${selectedGenre}&startIndex=${startIndex}&maxResults=${maxResults}`
+      `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/books?q=${encodeURIComponent(query)}&genre=${selectedGenre}&startIndex=${startIndex}&maxResults=${maxResults}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -68,7 +68,7 @@ export default function Product() {
       setSuggestions([]);
       return;
     }
-    fetch(`http://localhost:5000/books?q=${encodeURIComponent(query)}`)
+    fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/books?q=${encodeURIComponent(query)}`)
       .then((res) => res.json())
       .then((data) => {
         const items = data.items?.slice(0, 5).map((item: any) => ({

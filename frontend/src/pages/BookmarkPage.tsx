@@ -34,7 +34,7 @@ export default function BookmarkPage() {
       return;
     }
     setLoading(true);
-    fetch(`http://localhost:5000/bookmarks/${user.id}`)
+    fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/bookmarks/${user.id}`)
       .then((res) => res.json())
       .then((data: Bookmark[]) => {
         setBookmarks(data);
@@ -54,7 +54,7 @@ export default function BookmarkPage() {
     if (!user || !bookIdToDelete) return;
 
     try {
-      await fetch(`http://localhost:5000/bookmarks/${user!.id}/${bookIdToDelete}`, {
+      await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/bookmarks/${user!.id}/${bookIdToDelete}`, {
         method: "DELETE",
       });
       setBookmarks((prev) => prev.filter((b) => b.id !== bookIdToDelete));

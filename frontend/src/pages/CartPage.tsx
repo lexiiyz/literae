@@ -26,7 +26,7 @@ export default function CartPage() {
       return;
     }
     setLoading(true);
-    fetch(`http://localhost:5000/cart/${user.id}`)
+    fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/cart/${user.id}`)
       .then((res) => res.json())
       .then((data: CartItem[]) => {
         setCart(data);
@@ -46,7 +46,7 @@ export default function CartPage() {
     if (!user || !bookIdToDelete) return;
     
     try {
-      await fetch(`http://localhost:5000/cart/${user.id}/${bookIdToDelete}`, { method: "DELETE" });
+      await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/cart/${user.id}/${bookIdToDelete}`, { method: "DELETE" });
       setCart(cart.filter((c) => c.id !== bookIdToDelete));
     } catch (err) {
       console.error("Gagal menghapus buku:", err);
@@ -63,7 +63,7 @@ export default function CartPage() {
 
   const handleQuantityChange = async (bookId: string, quantity: number) => {
     if (quantity < 1) return;
-    await fetch(`http://localhost:5000/cart/${user!.id}/${bookId}`, {
+    await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/cart/${user!.id}/${bookId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ quantity }),

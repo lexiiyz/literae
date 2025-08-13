@@ -25,7 +25,7 @@ export default function Home() {
     AOS.refresh();
 
     const fetchBooks = async (query: string) => {
-      const res = await fetch(`http://localhost:5000/books?q=${query}`);
+      const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/books?q=${query}`);
       const data = await res.json();
       return data.items || [];
     };

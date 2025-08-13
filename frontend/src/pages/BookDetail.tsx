@@ -23,17 +23,17 @@ export default function BookDetail() {
   useEffect(() => {
     const fetchBookDetail = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/books/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/books/${id}`);
         const data = await res.json();
         setBook(data);
         
         // Memeriksa status bookmark dan cart jika user sudah login
         if (user && data) {
-          const bookmarkRes = await fetch(`http://localhost:5000/bookmarks/${user.id}`);
+          const bookmarkRes = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/bookmarks/${user.id}`);
           const bookmarks = await bookmarkRes.json();
           setIsBookmarked(bookmarks.some((b: any) => b.id === data.id));
 
-          const cartRes = await fetch(`http://localhost:5000/cart/${user.id}`);
+          const cartRes = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/cart/${user.id}`);
           const cartItems = await cartRes.json();
           setIsInCart(cartItems.some((c: any) => c.id === data.id));
         }
@@ -55,11 +55,11 @@ export default function BookDetail() {
     
     try {
       if (isBookmarked) {
-        await fetch(`http://localhost:5000/bookmarks/${user.id}/${book.id}`, { method: "DELETE" });
+        await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/bookmarks/${user.id}/${book.id}`, { method: "DELETE" });
         setIsBookmarked(false);
         toast.success("Buku berhasil dihapus dari bookmark!");
       } else {
-        await fetch(`http://localhost:5000/bookmarks/${user.id}`, {
+        await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/bookmarks/${user.id}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...book.volumeInfo, id: book.id }),
@@ -85,7 +85,7 @@ export default function BookDetail() {
         return;
       }
 
-      await fetch(`http://localhost:5000/cart/${user.id}`, {
+      await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/cart/${user.id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...book.volumeInfo, id: book.id, quantity: 1, price: book.saleInfo?.listPrice?.amount || 0 }),
