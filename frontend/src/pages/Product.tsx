@@ -12,13 +12,14 @@ interface Book {
 }
 
 const genres = [
-  { label: "All", query: "all" },
+  { label: "Semua", query: "all" },
   { label: "Programming", query: "programming" },
-  { label: "Fiction", query: "fiction" },
+  { label: "Fiksi", query: "fiction" },
   { label: "Science", query: "science" },
-  { label: "Business", query: "business" },
-  { label: "Education", query: "education" },
+  { label: "Bisnis", query: "business" },
+  { label: "Edukasi", query: "education" },
   { label: "Classic", query: "classic" },
+  { label: "Non-Fiksi", query: "nonfiction" },
   { label: "Novel", query: "novel" }
 ];
 
