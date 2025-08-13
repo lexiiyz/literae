@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import BookCard from "../components/BookCard";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { BookOpenIcon } from "@heroicons/react/24/outline";
+import { BookOpenIcon } from "@heroicons/react/24/outline"; // Tambah import icon
 
 interface Book {
   id: string;
